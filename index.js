@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv =require("dotenv")
 const cors = require("cors");
 
 const allRolePermission = require("./Routes/Hr-AdminRouter");
@@ -8,10 +9,11 @@ const auth = require("./Routes/authRouter");
 const app = express();
 app.use(cors());
 app.use(express.json());
+dotenv.config()
 
 mongoose
   .connect(
-    "mongodb+srv://nikhil77gautam:QH3FSsvbAbOdDvBL@cluster0.u4nfv2p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    process.env.DATA_BASE
   )
   .then(() => console.log("database connected"))
   .catch((err) => console.log("error connecting database", err.message));
